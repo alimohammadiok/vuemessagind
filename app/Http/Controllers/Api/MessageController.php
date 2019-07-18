@@ -38,7 +38,18 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = new Message;
+        $message->description = $request->get('message');
+        $message->title = 'tatataataatta';
+        $message->user_id =2;
+       
+        /* $message->create(['title'=>'fldfjdlfk', 'user_id'=>2,
+        'description'=>'test']); */
+        
+        $message->save();
+      
+       
+        
     }
 
     /**

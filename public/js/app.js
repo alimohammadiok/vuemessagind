@@ -46926,6 +46926,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -46952,6 +46954,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             {
                 _this.messages = response.data.messages;
             });
+        },
+        insertMessage: function insertMessage() {
+            axios.post('api/messages', { message: this.message });
         }
     }
 });
@@ -46978,8 +46983,6 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(message.user_id))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(message.title))]),
-            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(message.description))])
           ])
         }),
@@ -46987,7 +46990,50 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(1)
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.insertMessage($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "comment" } }, [_vm._v("Mesajınız:")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.message,
+                expression: "message"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { rows: "5", id: "comment" },
+            domProps: { value: _vm.message },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-default", attrs: { type: "submit" } },
+          [_vm._v("Gönder")]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -47001,23 +47047,8 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Gönderen kişi")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Mesaj konusu")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Mesaj metni")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "comment" } }, [_vm._v("Mesajınız:")]),
-      _vm._v(" "),
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: { rows: "5", id: "comment" }
-      })
     ])
   }
 ]

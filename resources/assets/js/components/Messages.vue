@@ -7,7 +7,6 @@
       <tr>
         <th>Mesaj No</th>
         <th>Gönderen kişi</th>
-        <th>Mesaj konusu</th>
         <th>Mesaj metni</th>
       </tr>
     </thead>
@@ -15,16 +14,19 @@
       <tr v-for="message in messages" :key="message.id">
         <td>{{message.id}}</td>
         <td>{{message.user_id}}</td>
-        <td>{{message.title}}</td>
         <td>{{message.description}}</td>
        
       </tr>
     </tbody>
   </table>
-  <div class="form-group">
+    <form @submit.prevent="insertMessage">
+
+<div class="form-group">
   <label for="comment">Mesajınız:</label>
-  <textarea class="form-control" rows="5" id="comment"></textarea>
+  <textarea class="form-control" rows="5" id="comment" v-model="message"></textarea>
 </div>
+<button type="submit" class="btn btn-default">Gönder</button>
+  </form>
 </div>
 </template>
 
@@ -50,13 +52,20 @@
         },
         methods:
         {
-            getMessages(){
+            getMessages()
+            {
                axios.get('api/messages').then(response => 
                 //console.log(response.data)
                 {this.messages = response.data.messages});
-            
-            
-        }
+            },
+
+            insertMessage()
+            {
+              axios.post('api/messages',
+                {message: this.message}
+              );
+             
+            }
         
         }
     }
