@@ -116,6 +116,7 @@
             {
                 this.insertMessage().then(alert('Mesajınız Gönderilmiştir!'));
                  
+                  this.getMessages();
                   this.scrollDown();
                 
                

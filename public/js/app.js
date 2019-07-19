@@ -47022,6 +47022,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         insertAndScroll: function insertAndScroll() {
             this.insertMessage().then(alert('Mesajınız Gönderilmiştir!'));
 
+            this.getMessages();
             this.scrollDown();
         }
     }
