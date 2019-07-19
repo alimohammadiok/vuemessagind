@@ -47021,10 +47021,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
 
                                 axios.post('api/messages', { message: this.message });
-
+                                this.getMessages();
                                 return _context2.abrupt("return", 1);
 
-                            case 2:
+                            case 3:
                             case "end":
                                 return _context2.stop();
                         }
@@ -47039,9 +47039,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return insertMessage;
         }(),
         insertAndScroll: function insertAndScroll() {
-            this.insertMessage().then(alert('Mesajınız Gönderilmiştir!'));
-
-            this.getMessages().then(this.scrollDown());
+            this.insertMessage().then(this.scrollDown());
         }
     }
 });

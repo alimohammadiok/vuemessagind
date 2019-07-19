@@ -108,23 +108,15 @@
                 axios.post('api/messages',
                   {message: this.message}
                 );
-
+                this.getMessages();
                 return 1
             },
 
-            insertAndScroll()
+             insertAndScroll()
             {
-                this.insertMessage().then(alert('Mesajınız Gönderilmiştir!'));
-                 
-                  this.getMessages().then(this.scrollDown());
-                  
+                this.insertMessage().then(this.scrollDown());
                 
-               
-
             }
-
-           
-        
         }
     }
 </script>
