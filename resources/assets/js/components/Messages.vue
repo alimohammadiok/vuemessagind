@@ -1,7 +1,7 @@
 <template>
     <div class="container">
   <h2>Emsal</h2>
-    <button v-on:click="getMessages()" type="button"  class="btn btn-secondary">Yenile</button>
+    <a v-on:click="getMessages()" type="button"  class="btn btn-secondary">Yenile</a>
 
   <div class="scrollable_table" id="automaticscroll" :key="componentKey"> 
       
@@ -45,11 +45,9 @@
 <script>
     export default {
         data (){
-           
          
             return{
-               componentKey: 0,
-                message:[],
+              
                 messages:
                 [
                     /* {id:1, title: 'hi', description: 'dlfkjdlsjfsd'},
@@ -96,18 +94,18 @@
               }
               
             },
-           async getMessages()
+            getMessages()
             {
+              messages = [];
                axios.get('api/messages').then(response => 
-                //console.log(response.data)
                 {this.messages = response.data.messages});
-                messages= null;
-                //this.scrollDown();
+                this.scrollDown();
+                
             },
 
             
 
-           async insertMessage()
+            insertMessage()
             {
 
                 axios.post('api/messages',
@@ -117,11 +115,7 @@
                 return 1
             },
 
-             insertAndScroll()
-            {
-                this.insertMessage().then(this.scrollDown());
-                
-            }
+            
         }
     }
 </script>
