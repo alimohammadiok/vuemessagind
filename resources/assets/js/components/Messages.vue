@@ -92,7 +92,7 @@
               }
               
             },
-            getMessages()
+           async getMessages()
             {
                axios.get('api/messages').then(response => 
                 //console.log(response.data)
@@ -116,8 +116,8 @@
             {
                 this.insertMessage().then(alert('Mesajınız Gönderilmiştir!'));
                  
-                  this.getMessages();
-                  this.scrollDown();
+                  this.getMessages().then(this.scrollDown());
+                  
                 
                
 

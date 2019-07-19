@@ -46984,28 +46984,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 document.getElementById('button').classList.remove('btn-success');
             }
         },
-        getMessages: function getMessages() {
-            var _this = this;
-
-            axios.get('api/messages').then(function (response)
-            //console.log(response.data)
-            {
-                _this.messages = response.data.messages;
-            });
-            //this.scrollDown();
-        },
-        insertMessage: function () {
+        getMessages: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var _this = this;
+
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                axios.get('api/messages').then(function (response)
+                                //console.log(response.data)
+                                {
+                                    _this.messages = response.data.messages;
+                                });
+                                //this.scrollDown();
 
-                                axios.post('api/messages', { message: this.message });
-
-                                return _context.abrupt("return", 1);
-
-                            case 2:
+                            case 1:
                             case "end":
                                 return _context.stop();
                         }
@@ -47013,8 +47007,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function insertMessage() {
+            function getMessages() {
                 return _ref.apply(this, arguments);
+            }
+
+            return getMessages;
+        }(),
+        insertMessage: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+
+                                axios.post('api/messages', { message: this.message });
+
+                                return _context2.abrupt("return", 1);
+
+                            case 2:
+                            case "end":
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function insertMessage() {
+                return _ref2.apply(this, arguments);
             }
 
             return insertMessage;
@@ -47022,8 +47041,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         insertAndScroll: function insertAndScroll() {
             this.insertMessage().then(alert('Mesajınız Gönderilmiştir!'));
 
-            this.getMessages();
-            this.scrollDown();
+            this.getMessages().then(this.scrollDown());
         }
     }
 });
