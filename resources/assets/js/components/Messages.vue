@@ -97,6 +97,7 @@
                axios.get('api/messages').then(response => 
                 //console.log(response.data)
                 {this.messages = response.data.messages});
+                messages= null;
                 //this.scrollDown();
             },
 

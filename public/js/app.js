@@ -46997,9 +46997,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 {
                                     _this.messages = response.data.messages;
                                 });
+                                messages = null;
                                 //this.scrollDown();
 
-                            case 1:
+                            case 2:
                             case "end":
                                 return _context.stop();
                         }
