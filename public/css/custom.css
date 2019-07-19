@@ -1,0 +1,12 @@
+.scrollable_table
+{
+    position: relative;
+    height: 500px;
+    overflow: auto; 
+    display: block;
+}
+
+.somepadding
+{
+    margin-bottom:1000px;
+}

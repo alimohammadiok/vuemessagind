@@ -8,5 +8,5 @@
 @extends('layouts/app')
 
 @section('content')
-<messages></messages>
+<messages :key="componentKey"></messages>
 @endsection

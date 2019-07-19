@@ -1,7 +1,10 @@
 <template>
     <div class="container">
   <h2>Emsal</h2>
-             
+    <button v-on:click="getMessages()" type="button"  class="btn btn-secondary">Yenile</button>
+
+  <div class="scrollable_table" id="automaicscroll"> 
+      
   <table class="table table-striped">
     <thead>
       <tr>
@@ -17,23 +20,35 @@
         <td>{{message.description}}</td>
        
       </tr>
+      <tfoot>
+    <tr>
+      <td>.</td>
+      
+    </tr>
+  </tfoot>
     </tbody>
   </table>
-    <form @submit.prevent="insertMessage">
+  </div> 
+    <form @submit.prevent="insertMessage" id="messageForm">
 
 <div class="form-group">
   <label for="comment">Mesajınız:</label>
-  <textarea class="form-control" rows="5" id="comment" v-model="message"></textarea>
+  <textarea id="message" class="form-control" rows="5"  v-model="message" v-on:keyup="checktext"></textarea>
 </div>
-<button type="submit" class="btn btn-default">Gönder</button>
+<button id="button" type="submit" disabled=true  class="btn btn-secondary">Gönder</button>
   </form>
+  
 </div>
+
 </template>
 
 <script>
     export default {
         data (){
+           
+         
             return{
+              componentKey: 0,
                 messages:
                 [
                     /* {id:1, title: 'hi', description: 'dlfkjdlsjfsd'},
@@ -52,19 +67,52 @@
         },
         methods:
         {
+
+            checktext: function(){
+              var charactor_count = document.getElementById("message").value;
+              if(charactor_count.length>10)
+              {
+                //alert('the key is up');
+                document.getElementById("button").disabled = false;
+                document.getElementById('button').classList.remove('btn-secondary');
+                document.getElementById('button').classList.add('btn-success');
+              }
+
+              else
+              {
+                document.getElementById("button").disabled = true;
+                 document.getElementById('button').classList.add('btn-secondary');
+                document.getElementById('button').classList.remove('btn-success');
+              }
+              
+            },
             getMessages()
             {
                axios.get('api/messages').then(response => 
                 //console.log(response.data)
                 {this.messages = response.data.messages});
+                this.scrollDown();
             },
 
-            insertMessage()
+            insertMessage(event)
             {
-              axios.post('api/messages',
-                {message: this.message}
-              );
+
+                  axios.post('api/messages',
+                  {message: this.message}
+                );
+
+                this.getMessages();
+                this.scrollDown();
+                this.message = '';
+                event.target.reset();               
              
+             
+            },
+
+            scrollDown()
+            {
+                document.getElementById("automaicscroll").scrollTop=document.getElementById("automaicscroll").scrollHeight  ;
+
             }
         
         }
