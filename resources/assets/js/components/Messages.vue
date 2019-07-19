@@ -3,7 +3,7 @@
   <h2>Emsal</h2>
     <button v-on:click="getMessages()" type="button"  class="btn btn-secondary">Yenile</button>
 
-  <div class="scrollable_table" id="automaticscroll"> 
+  <div class="scrollable_table" id="automaticscroll" :key="componentKey"> 
       
   <table class="table table-striped">
     <thead>
@@ -48,6 +48,7 @@
            
          
             return{
+               componentKey: 0,
                 message:[],
                 messages:
                 [
@@ -67,6 +68,9 @@
         },
         methods:
         {
+            forceRerender() {
+              this.componentKey += 1;  
+            },
 
            scrollDown()
             {

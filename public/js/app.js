@@ -46951,6 +46951,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     data: function data() {
 
         return {
+            componentKey: 0,
             message: [],
             messages: [
                 /* {id:1, title: 'hi', description: 'dlfkjdlsjfsd'},
@@ -46966,6 +46967,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     methods: {
+        forceRerender: function forceRerender() {
+            this.componentKey += 1;
+        },
         scrollDown: function scrollDown() {
             document.getElementById("automaticscroll").scrollTop = document.getElementById("automaticscroll").scrollHeight;
         },
@@ -47072,7 +47076,11 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "scrollable_table", attrs: { id: "automaticscroll" } },
+      {
+        key: _vm.componentKey,
+        staticClass: "scrollable_table",
+        attrs: { id: "automaticscroll" }
+      },
       [
         _c("table", { staticClass: "table table-striped" }, [
           _vm._m(0),
