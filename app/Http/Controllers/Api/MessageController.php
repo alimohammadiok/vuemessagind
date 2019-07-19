@@ -16,6 +16,12 @@ class MessageController extends Controller
     {
         $messages = new Message();
         $messages = $messages->all();
+
+        //var_dump($messages);
+       /*  foreach($messages as $message)
+        {
+            $message->user();
+        } */
         return response()->json(['messages'=>$messages]);
 
     }
