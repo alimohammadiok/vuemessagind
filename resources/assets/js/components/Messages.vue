@@ -105,18 +105,20 @@
            async insertMessage()
             {
 
-               let result= await axios.post('api/messages',
+                axios.post('api/messages',
                   {message: this.message}
                 );
 
-                return result;
+                return 1
             },
 
             insertAndScroll()
             {
-                this.insertMessage();
-                this.getMessages();
-                this.scrollDown();
+                this.insertMessage().then(alert('Mesajınız Gönderilmiştir!'));
+                 
+                  this.scrollDown();
+                
+               
 
             }
 

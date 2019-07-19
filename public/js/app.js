@@ -46996,19 +46996,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         insertMessage: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
-                                return axios.post('api/messages', { message: this.message });
+
+                                axios.post('api/messages', { message: this.message });
+
+                                return _context.abrupt("return", 1);
 
                             case 2:
-                                result = _context.sent;
-                                return _context.abrupt("return", result);
-
-                            case 4:
                             case "end":
                                 return _context.stop();
                         }
@@ -47023,8 +47020,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return insertMessage;
         }(),
         insertAndScroll: function insertAndScroll() {
-            this.insertMessage();
-            this.getMessages();
+            this.insertMessage().then(alert('Mesajınız Gönderilmiştir!'));
+
             this.scrollDown();
         }
     }
