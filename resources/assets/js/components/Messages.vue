@@ -3,7 +3,7 @@
   <h2>Emsal</h2>
     <button v-on:click="getMessages()" type="button"  class="btn btn-secondary">Yenile</button>
 
-  <div class="scrollable_table" id="automaicscroll"> 
+  <div class="scrollable_table" id="automaticscroll"> 
       
   <table class="table table-striped">
     <thead>
@@ -29,7 +29,7 @@
     </tbody>
   </table>
   </div> 
-    <form @submit.prevent="insertMessage" id="messageForm">
+    <form @submit.prevent="insertAndScroll" id="messageForm">
 
 <div class="form-group">
   <label for="comment">Mesajınız:</label>
@@ -48,7 +48,7 @@
            
          
             return{
-              componentKey: 0,
+                message:[],
                 messages:
                 [
                     /* {id:1, title: 'hi', description: 'dlfkjdlsjfsd'},
@@ -67,6 +67,12 @@
         },
         methods:
         {
+
+           scrollDown()
+            {
+                document.getElementById("automaticscroll").scrollTop=document.getElementById("automaticscroll").scrollHeight  ;
+
+            },
 
             checktext: function(){
               var charactor_count = document.getElementById("message").value;
@@ -91,29 +97,30 @@
                axios.get('api/messages').then(response => 
                 //console.log(response.data)
                 {this.messages = response.data.messages});
-                this.scrollDown();
+                //this.scrollDown();
             },
 
-            insertMessage(event)
+            
+
+           async insertMessage()
             {
 
-                  axios.post('api/messages',
+               let result= await axios.post('api/messages',
                   {message: this.message}
                 );
 
-                this.getMessages();
-                this.scrollDown();
-                this.message = '';
-                event.target.reset();               
-             
-             
+                return result;
             },
 
-            scrollDown()
+            insertAndScroll()
             {
-                document.getElementById("automaicscroll").scrollTop=document.getElementById("automaicscroll").scrollHeight  ;
+                this.insertMessage();
+                this.getMessages();
+                this.scrollDown();
 
             }
+
+           
         
         }
     }
