@@ -1,7 +1,7 @@
 <template>
     <div class="container">
   <h2>Emsal</h2>
-    <a v-on:click="getMessages()" type="button"  class="btn btn-secondary">Yenile</a>
+    <button v-on:click="getMessages" type="button"  class="btn btn-secondary">Yenile</button>
 
   <div class="scrollable_table" id="automaticscroll" :key="componentKey"> 
       
@@ -94,13 +94,12 @@
               }
               
             },
-            getMessages()
+            getMessages:function(event)
             {
               messages = [];
                axios.get('api/messages').then(response => 
                 {this.messages = response.data.messages});
                 this.scrollDown();
-                
             },
 
             

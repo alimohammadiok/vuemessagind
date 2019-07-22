@@ -1,5 +1,5 @@
 @extends('layouts/app')
 
 @section('content')
-<messages></messages>
+<box></box>
 @endsection

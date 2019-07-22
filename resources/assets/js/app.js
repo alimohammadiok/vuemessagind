@@ -21,6 +21,7 @@ window.axios = require('axios');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('users', require('./components/Users.vue'));
 Vue.component('messages', require('./components/Messages.vue'));
+Vue.component('box', require('./components/BoxComponent.vue'));
 
 const app = new Vue({
     el: '#app'

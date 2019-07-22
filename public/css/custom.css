@@ -10,3 +10,39 @@
 {
     margin-bottom:1000px;
 }
+
+.firstDiv
+{
+    width: 1000px;
+    height: 500px;
+    border-style: solid;
+    border-width: medium;
+    margin: 10px;
+    
+}
+
+.margin
+{
+    margin: 20px;
+}
+
+.secondDiv
+{
+    width: 800px;
+    height: 200px;
+    border-style: solid;
+    border-width: medium;
+    margin: 10px;
+    
+}
+
+.thirdDiv
+{
+    float: left;
+    width: 100px;
+    height: 50px;
+    border-style: solid;
+    border-width: medium;
+    margin: 10px;
+    
+}
